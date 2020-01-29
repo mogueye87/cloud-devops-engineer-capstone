@@ -19,7 +19,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("mogueye/simple-webapp")
+                    app = docker.build("mogueye87/simple-webapp")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }

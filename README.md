@@ -1,17 +1,9 @@
-# cicd-pipeline-train-schedule-jenkins
+# Cloud devops engineer capstone project
 
-This is a simple train schedule app written using nodejs. It is intended to be used as a sample application for a series of hands-on learning activities.
+In this project, we will implement a full CI/CD pipeline using Jenkins, Docker, Kubernetes, Cloudformation for the provisioning the infractructure.
 
-## Running the app
+## Jenkins Installation
 
-You need a Java JDK 7 or later to run the build. You can run the build like this:
+## Create EKS kubernetes cluster
 
-    ./gradlew build
 
-You can run the app with:
-
-    ./gradlew npm_start
-
-Once it is running, you can access it in a browser at [http://localhost:3000](http://localhost:3000)
-
-I am testing gît hooks

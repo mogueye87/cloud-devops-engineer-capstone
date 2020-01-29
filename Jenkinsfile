@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_IMAGE_NAME = "mogueye87/simple-webapp"
+    }
     stages {
         stage('Build') {
             steps {
@@ -37,6 +40,21 @@ pipeline {
                         app.push("latest")
                     }
                 }
+            }
+        }
+
+        stage('Deploy to Kubernetes Cluster') {
+            when {
+                branch 'master'
+            }
+            steps {
+                input 'Deploy to EKS Kubernetes Cluster?'
+                milestone(1)
+                kubernetesDeploy(
+                kubeconfigId: 'kubeconfig',
+                configs: 'nginx-webapp-kube.yml',
+                enableConfigSubstitution: true  
+                )
             }
         }
    }

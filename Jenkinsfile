@@ -46,19 +46,15 @@ pipeline {
 		stage('Configure eks current context') {	
 			steps {	
 				withAWS(region:'us-west-2', credentials:'aws-eks-login') {	
-					sh '''	
-                            kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone	
-					'''	
+					sh 'kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone'
 				}	
 			}	
 		}
 		stage('Deploy to EKS') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
-					sh '''
-						kubectl apply -f ./nginx-controller.json
-                        kubectl apply -f ./nginx-service.json
-					'''
+					sh 'kubectl apply -f ./nginx-controller.json'
+                    sh 'kubectl apply -f ./nginx-service.json'
 				}
 			}
 		}

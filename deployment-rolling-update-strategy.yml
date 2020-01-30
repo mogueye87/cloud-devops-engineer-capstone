@@ -19,7 +19,7 @@ spec:
         app: hello-dep
     spec:
       containers:
-      - image: mogueye87/simple-nginx-app:2.0
+      - image: mogueye87/simple-nginx-app:latest
         imagePullPolicy: Always
         name: simple-nginx-app
         ports:

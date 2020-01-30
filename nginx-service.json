@@ -1,24 +1,23 @@
 {
-    "kind":"Service",
-    "apiVersion":"v1",
-    "metadata":{
-       "name":"simple-nginx-app",
-       "labels":{
-          "app":"simple-nginx-app",
-          "role":"master"
-       }
-    },
-    "spec":{
-       "ports": [
-         {
-           "port":8080,
-           "targetPort":80
-         }
-       ],
-       "selector":{
-          "app":"simple-nginx-app",
-          "role":"master"
-       },
-       "type": "LoadBalancer"
-    }
- }
+   "kind":"Service",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"simple-nginx-app",
+      "labels":{
+         "app":"simple-nginx-app",
+         "role":"master"
+      }
+   },
+   "spec":{
+      "ports": [
+        {
+          "port":8080,
+          "targetPort":80
+        }
+      ],
+      "selector":{
+         "app":"simple-nginx-app",
+         "role":"master"
+      }
+   }
+}

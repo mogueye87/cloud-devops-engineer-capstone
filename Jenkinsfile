@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "mogueye87/simple-webapp"
+        DOCKER_IMAGE_NAME = "mogueye87/simpleNginxApp"
     }
     stages {
         stage('Build') {
@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("mogueye87/simple-webapp")
+                    app = docker.build("mogueye87/simpleNginxApp")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
@@ -43,20 +43,13 @@ pipeline {
             }
         }
 
-		// stage('Configure eks current context') {	
-		// 	steps {	
-		// 		withAWS(region:'us-west-2', credentials:'aws-eks-login') {	
-		// 			sh 'kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone'
-		// 		}	
-		// 	}	
+		// stage('Deploy to EKS') {
+		// 	steps {
+		// 		withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+		// 			sh 'kubectl apply -f ./nginx-controller.json'
+        //             sh 'kubectl apply -f ./nginx-service.json'
+		// 		}
+		// 	}
 		// }
-		stage('Deploy to EKS') {
-			steps {
-				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
-					sh 'kubectl apply -f ./nginx-controller.json'
-                    sh 'kubectl apply -f ./nginx-service.json'
-				}
-			}
-		}
    }
 }

@@ -2,22 +2,22 @@
    "kind":"ReplicationController",
    "apiVersion":"v1",
    "metadata":{
-      "name":"nginx",
+      "name":"simple-nginx-app",
       "labels":{
-         "app":"simpleNginxApp",
+         "app":"simple-nginx-app",
          "role":"master"
       }
    },
    "spec":{
       "replicas":1,
       "selector":{
-         "app":"simpleNginxApp",
+         "app":"simple-nginx-app",
          "role":"master"
       },
       "template":{
          "metadata":{
             "labels":{
-               "app":"simpleNginxApp",
+               "app":"simple-nginx-app",
                "role":"master"
             }
          },
@@ -25,7 +25,7 @@
             "containers":[
                {
                   "name":"nginx",
-                  "image":"mogueye87/simpleNginxApp",
+                  "image":"mogueye87/simple-nginx-app",
                   "ports":[
                      {
                         "name":"http-server",

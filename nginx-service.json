@@ -2,9 +2,9 @@
     "kind":"Service",
     "apiVersion":"v1",
     "metadata":{
-       "name":"simpleNginxApp",
+       "name":"simple-nginx-app",
        "labels":{
-          "app":"simpleNginxApp",
+          "app":"simple-nginx-app",
           "role":"master"
        }
     },
@@ -16,7 +16,7 @@
          }
        ],
        "selector":{
-          "app":"simpleNginxApp",
+          "app":"simple-nginx-app",
           "role":"master"
        },
        "type": "LoadBalancer"

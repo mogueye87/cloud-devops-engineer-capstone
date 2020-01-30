@@ -24,3 +24,10 @@ kubectl apply -f <service-name.json>
 kubectl get svc
 ```
 
+
+## References
+1. https://medium.com/faun/learning-kubernetes-by-doing-part-2-pods-replicasets-and-deployments-f1187716f59a
+2. https://medium.com/faun/learning-kubernetes-by-doing-part-2-pods-replicasets-and-deployments-f1187716f59a
+3. https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+4. https://medium.com/@andresaaap/capstone-cloud-devops-nanodegree-4493ab439d48
+5. 

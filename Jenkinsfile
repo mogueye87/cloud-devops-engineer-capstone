@@ -43,13 +43,13 @@ pipeline {
             }
         }
 
-		// stage('Deploy to EKS') {
-		// 	steps {
-		// 		withAWS(region:'us-west-2', credentials:'aws-eks-login') {
-		// 			sh 'kubectl apply -f ./nginx-controller.json'
-        //             sh 'kubectl apply -f ./nginx-service.json'
-		// 		}
-		// 	}
-		// }
+		stage('Deploy to EKS') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+					sh 'kubectl apply -f ./nginx-controller.json'
+                    sh 'kubectl apply -f ./nginx-service.json'
+				}
+			}
+		}
    }
 }

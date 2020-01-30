@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-nginx-app
+  namespace: default
+spec:
+  replicas: 2
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: hello-dep
+  template:
+    metadata:
+      labels:
+        app: hello-dep
+    spec:
+      containers:
+      - image: mogueye87/simple-nginx-app:2.0
+        imagePullPolicy: Always
+        name: simple-nginx-app
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+             path: /
+             port: 8080
+             initialDelaySeconds: 5
+             periodSeconds: 5
+             successThreshold: 1

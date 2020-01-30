@@ -12,12 +12,13 @@
        "ports": [
          {
            "port":8080,
-           "targetPort":"http-server"
+           "targetPort":80
          }
        ],
        "selector":{
           "app":"nginx",
           "role":"master"
-       }
+       },
+       "type": "LoadBalancer"
     }
  }

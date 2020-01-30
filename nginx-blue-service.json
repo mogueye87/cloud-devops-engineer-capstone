@@ -18,6 +18,7 @@
       "selector":{
          "app":"simple-nginx-app",
          "role":"master"
-      }
+      },
+      "type":"LoadBalancer"
    }
 }

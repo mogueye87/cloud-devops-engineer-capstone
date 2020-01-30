@@ -43,13 +43,13 @@ pipeline {
             }
         }
 
-		stage('Configure eks current context') {	
-			steps {	
-				withAWS(region:'us-west-2', credentials:'aws-eks-login') {	
-					sh 'kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone'
-				}	
-			}	
-		}
+		// stage('Configure eks current context') {	
+		// 	steps {	
+		// 		withAWS(region:'us-west-2', credentials:'aws-eks-login') {	
+		// 			sh 'kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone'
+		// 		}	
+		// 	}	
+		// }
 		stage('Deploy to EKS') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-eks-login') {

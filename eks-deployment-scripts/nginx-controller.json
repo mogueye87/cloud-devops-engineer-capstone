@@ -1,32 +1,35 @@
 {
-   "kind": "ReplicationController",
-   "apiVersion": "v1",
-   "metadata": {
-      "name": "nginxApp",
-      "labels": {
-         "app": "nginxApp"
+   "kind":"ReplicationController",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"nginx",
+      "labels":{
+         "app":"nginx",
+         "role":"master"
       }
    },
-   "spec": {
-      "replicas": 1,
-      "selector": {
-         "app": "nginxApp"
+   "spec":{
+      "replicas":1,
+      "selector":{
+         "app":"nginx",
+         "role":"master"
       },
-      "template": {
-         "metadata": {
-            "labels": {
-               "app": "nginxApp"
+      "template":{
+         "metadata":{
+            "labels":{
+               "app":"nginx",
+               "role":"master"
             }
          },
-         "spec": {
-            "containers": [
+         "spec":{
+            "containers":[
                {
-                  "name": "nginxApp",
-                  "image": "mogueye87/simple-webapp",
-                  "ports": [
+                  "name":"nginx",
+                  "image":"mogueye87/simple-webapp",
+                  "ports":[
                      {
-                        "name": "http-server",
-                        "containerPort": 80
+                        "name":"http-server",
+                        "containerPort":8080
                      }
                   ]
                }

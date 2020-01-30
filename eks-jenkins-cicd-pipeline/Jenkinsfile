@@ -3,6 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "mogueye87/simple-nginx-app"
     }
+
     stages {
         stage('Build') {
             steps {
@@ -17,9 +18,6 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     app = docker.build("mogueye87/simple-nginx-app")
@@ -29,10 +27,8 @@ pipeline {
                 }
             }
         }
+
         stage('Push Docker Image') {
-            when {
-                branch 'master'
-            }
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -43,11 +39,43 @@ pipeline {
             }
         }
 
-		stage('Deploy to EKS') {
+		stage('Setting EKS Context') {
 			steps {
 				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
-					sh 'kubectl apply -f ./nginx-controller.json'
-                    sh 'kubectl apply -f ./nginx-service.json'
+					sh 'kubectl config use-context arn:aws:eks:us-west-2:878823922774:cluster/EKSCloudDevOpsCapstone'
+				}
+			}
+		}
+
+		stage('Deploy to Blue container') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+					sh 'kubectl apply -f ./nginx-blue-controller.json'
+				}
+			}
+		}
+
+		stage('Deploy Green Container') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+					sh 'kubectl apply -f ./nginx-green-controller.json'
+				}
+			}
+		}
+
+		stage('Replication Service for Blue Environment') {
+			steps {
+				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+					sh 'kubectl apply -f ./nginx-blue-service.json'
+				}
+			}
+		}
+
+		stage('Replication Service for Green Environment') {
+			steps {
+                input 'Redirect traffic to green environment?'
+				withAWS(region:'us-west-2', credentials:'aws-eks-login') {
+				sh 'kubectl apply -f ./nginx-green-service.json'
 				}
 			}
 		}

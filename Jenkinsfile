@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = "mogueye87/simpleNginxApp"
+        DOCKER_IMAGE_NAME = "mogueye87/simple-nginx-app"
     }
     stages {
         stage('Build') {
@@ -22,7 +22,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("mogueye87/simpleNginxApp")
+                    app = docker.build("mogueye87/simple-nginx-app")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }

@@ -4,20 +4,20 @@
    "metadata":{
       "name":"nginx",
       "labels":{
-         "app":"nginx",
+         "app":"simpleNginxApp",
          "role":"master"
       }
    },
    "spec":{
       "replicas":1,
       "selector":{
-         "app":"nginx",
+         "app":"simpleNginxApp",
          "role":"master"
       },
       "template":{
          "metadata":{
             "labels":{
-               "app":"nginx",
+               "app":"simpleNginxApp",
                "role":"master"
             }
          },
@@ -25,7 +25,7 @@
             "containers":[
                {
                   "name":"nginx",
-                  "image":"mogueye87/simple-webapp",
+                  "image":"mogueye87/simpleNginxApp",
                   "ports":[
                      {
                         "name":"http-server",
